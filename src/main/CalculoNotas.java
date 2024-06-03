@@ -58,7 +58,7 @@ public class CalculoNotas {
 	        	 return nota.getNotaExamen() >= 5.0 && nota.getNotaTrabajo() >= 5.0 && nota.getNotaActitud() >= 5.0;
 			} catch (NullPointerException e) {
 				System.out.println("El alumno no existe");
-	            return false;
+	            return false; 
 			}
 	    }
 

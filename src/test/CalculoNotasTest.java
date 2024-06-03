@@ -40,13 +40,14 @@ public class CalculoNotasTest {
 		assertFalse(false); 
 	}
 
-//	@Test
-//	public void testMostrarNotas() {
-//		Nota nota = new Nota(3,"paco",6,7,3);
-//		CalculoNotas cn = new CalculoNotas();
-//		cn.agregarAlumno(nota);
-//		assertEquals("Nota [id=3, nombre=paco, NotaExamen=6.0, NotaTrabajo=7.0, NotaActitud=3.0]", cn.mostrarNotas());
-//	}
+	@Test
+	public void testMostrarNotas() {
+		Nota nota = new Nota(3,"paco",6,7,3);
+		CalculoNotas cn = new CalculoNotas();
+		cn.agregarAlumno(nota);
+		cn.mostrarNotas();
+		assertEquals("Nota [id=3, nombre=paco, NotaExamen=6.0, NotaTrabajo=7.0, NotaActitud=3.0]",nota.toString());
+	}
 
 	@Test
 	public void testCalcularMedia() {
@@ -54,7 +55,7 @@ public class CalculoNotasTest {
 		CalculoNotas cn = new CalculoNotas();
 		cn.agregarAlumno(nota);
         nota = cn.buscarNotaPorId(3);
-       
+    
         assertEquals(6.0, cn.calcularMedia(3),0.01);
 	}
 	@Test
@@ -76,19 +77,34 @@ public class CalculoNotasTest {
 
         assertTrue(cn.todasAprobadas(3));
 	}
-	
+	@Test(expected=NullPointerException.class)
 	public void testTodasNoAprobadas() {
-		Nota nota = new Nota(3,"paco",6,4,6);
+		Nota nota = new Nota(3,"paco",6,5,6);
 		CalculoNotas cn = new CalculoNotas();
 		cn.agregarAlumno(nota);
-        nota = cn.buscarNotaPorId(3);
 
-        assertFalse(cn.todasAprobadas(3));
+        assertFalse(cn.todasAprobadas(2));
 	}
 
 	@Test
 	public void testCalcularNotaFinal() {
-		fail("Not yet implemented");
+		Nota nota = new Nota(3,"paco",6,6,6);
+		CalculoNotas cn = new CalculoNotas();
+		cn.agregarAlumno(nota);
+		double notaFinal = cn.calcularMedia(3);
+		assertEquals("Aprobado " + notaFinal, cn.calcularNotaFinal(3));
 	}
+	
+
+	@Test
+	public void testCalcularNotaFinalElse() {
+		Nota nota = new Nota(3,"paco",6,4,6);
+		CalculoNotas cn = new CalculoNotas();
+		cn.agregarAlumno(nota);
+		double notaFinal = cn.calcularMedia(3);
+		
+		assertEquals("A la recu, uno de los 3 apartados esta suspendido", cn.calcularNotaFinal(3));
+	}
+
 
 }
