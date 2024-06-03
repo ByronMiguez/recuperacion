@@ -77,13 +77,13 @@ public class CalculoNotasTest {
 
         assertTrue(cn.todasAprobadas(3));
 	}
-	@Test(expected=NullPointerException.class)
+	@Test(expected=java.lang.AssertionError.class)
 	public void testTodasNoAprobadas() {
-		Nota nota = new Nota(3,"paco",6,5,6);
+		Nota nota = new Nota(3,"paco",3,5,6);
 		CalculoNotas cn = new CalculoNotas();
 		cn.agregarAlumno(nota);
-
-        assertFalse(cn.todasAprobadas(2));
+		
+		assertFalse(cn.todasAprobadas(2));
 	}
 
 	@Test

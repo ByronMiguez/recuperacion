@@ -55,8 +55,9 @@ public class CalculoNotas {
 	    public boolean todasAprobadas(int id) {
 	        Nota nota = buscarNotaPorId(id);
 	        try {
-	        	 return nota.getNotaExamen() >= 5.0 && nota.getNotaTrabajo() >= 5.0 && nota.getNotaActitud() >= 5.0;
-			} catch (NullPointerException e) {
+	        	boolean si = nota.getNotaExamen() >= 5.0 && nota.getNotaTrabajo() >= 5.0 && nota.getNotaActitud() >= 5.0; 
+	        	 return si;
+			} catch (java.lang.Exception e) {
 				System.out.println("El alumno no existe");
 	            return false; 
 			}
@@ -72,6 +73,6 @@ public class CalculoNotas {
 	            return "A la recu, uno de los 3 apartados esta suspendido";
 	        }
 	    }
-
+	  
    
 }
